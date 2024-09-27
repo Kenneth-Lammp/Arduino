@@ -1,0 +1,29 @@
+import pyfirmata2
+
+comport='COM8'
+
+board=pyfirmata2.Arduino(comport)
+
+
+led_1=board.get_pin('d:8:o')
+led_2=board.get_pin('d:9:o')
+led_3=board.get_pin('d:10:o')
+led_4=board.get_pin('d:11:o')
+led_5=board.get_pin('d:12:o')
+# use switch case and function taking in variables for function led write
+
+def ledWrite(finger_right, finger_left):
+        #leftfinger LED
+        led_1.write(finger_left[0])
+        led_2.write(finger_left[1])
+        led_3.write(finger_left[2])
+        led_4.write(finger_left[3])
+        led_5.write(finger_left[4])        
+        #rightfinger LED
+        led_6.write(finger_right[0])
+        led_7.write(finger_right[1])
+        led_8.write(finger_right[2])
+        led_9.write(finger_right[3])
+        led_10.write(finger_right[4])
+def led(finger_right, finger_left):
+	ledWrite(finger_right, finger_left)
