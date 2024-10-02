@@ -18,80 +18,16 @@ while True:
         lmList1 = hands[0]
         type = ""
         finger, type=detector1.onefingerUp(lmList1, type)
-        print(type)
         print(finger)
         cnt.ledOneHand(finger, type)
 
-    elif len(hands) == 2:
+    if len(hands) == 2:
         lmList1=hands[0]
         lmList2=hands[1]
         finger_right, finger_left=detector1.twofingersUp(lmList1, lmList2)
 
         print(finger_right, finger_left)
         cnt.ledTwoHands(finger_right, finger_left)
-        #commented out this section as legacy
-        '''if fingerUp==[0,0,0,0,0]:
-            cv2.putText(frame,'Finger count:0',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        # single finger
-        elif fingerUp==[0,1,0,0,0]:
-            cv2.putText(frame,'Finger count:1',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,0,0,0,0]:
-            cv2.putText(frame,'Finger count:1',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,0,1,0,0]:
-            cv2.putText(frame,'Jackass',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,0,0,1,0]:
-            cv2.putText(frame,'Finger count:1',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,0,0,0,1]:
-            cv2.putText(frame,'Finger count:1',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        # double finger
-        elif fingerUp==[1,1,0,0,0]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,0,1,0,0]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,0,0,1,0]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,0,0,0,1]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,1,1,0,0]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,1,0,1,0]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,1,0,0,1]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,0,1,1,0]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,0,1,0,1]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,0,0,1,1]:
-            cv2.putText(frame,'Finger count:2',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        # triple finger
-        elif fingerUp==[1,1,1,0,0]:
-             cv2.putText(frame,'Finger count:3',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,1,1,1,0]:
-             cv2.putText(frame,'Finger count:3',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,0,1,1,1]:
-             cv2.putText(frame,'Finger count:3',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,1,0,1,0]:
-             cv2.putText(frame,'Finger count:3',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,1,0,0,1]:
-             cv2.putText(frame,'Finger count:3',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[0,1,1,0,1]:
-            cv2.putText(frame,'Finger count:3',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,0,1,0,1]:
-            cv2.putText(frame,'Finger count:3',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,0,0,1,1]:
-            cv2.putText(frame,'Finger count:3',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        # quadruple finger
-        elif fingerUp==[0,1,1,1,1]:
-            cv2.putText(frame,'Finger count:4',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,1,1,1,0]:
-            cv2.putText(frame,'Finger count:4',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        elif fingerUp==[1,1,0,1,1]:
-            cv2.putText(frame,'Finger count:4',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-        # quintuple finger
-        elif fingerUp==[1,1,1,1,1]:
-            cv2.putText(frame,'Finger count:5',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
-'''
     cv2.imshow("frame",frame)
     k=cv2.waitKey(1)
     if k==ord("k"):
