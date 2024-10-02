@@ -16,9 +16,11 @@ while True:
     #img=detector3.findFaces(frame)
     if len(hands) == 1:
         lmList1 = hands[0]
-        finger=detector1.onefingerUp(lmList1)
-
+        type = ""
+        finger, type=detector1.onefingerUp(lmList1, type)
+        print(type)
         print(finger)
+        cnt.ledOneHand(finger, type)
 
     elif len(hands) == 2:
         lmList1=hands[0]
@@ -26,7 +28,7 @@ while True:
         finger_right, finger_left=detector1.twofingersUp(lmList1, lmList2)
 
         print(finger_right, finger_left)
-        cnt.led(finger_right, finger_left)
+        cnt.ledTwoHands(finger_right, finger_left)
         #commented out this section as legacy
         '''if fingerUp==[0,0,0,0,0]:
             cv2.putText(frame,'Finger count:0',(20,460),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1,cv2.LINE_AA)
