@@ -1,22 +1,124 @@
 import pyfirmata2
+from pyfirmata2 import Arduino, SERVO
+from time import sleep
 
 comport='COM8'
 
 board=pyfirmata2.Arduino(comport)
 
-
-led_1=board.get_pin('d:8:o')
-led_2=board.get_pin('d:9:o')
-led_3=board.get_pin('d:10:o')
-led_4=board.get_pin('d:11:o')
-led_5=board.get_pin('d:12:o')
-led_6=board.get_pin('d:3:o')
-led_7=board.get_pin('d:4:o')
-led_8=board.get_pin('d:5:o')
-led_9=board.get_pin('d:6:o')
-led_10=board.get_pin('d:7:o')
+servo_1=board.get_pin('d:8:s')
+servo_2=board.get_pin('d:9:s')
+servo_3=board.get_pin('d:10:s')
+servo_4=board.get_pin('d:11:s')
+servo_5=board.get_pin('d:12:s')
+servo_6=board.get_pin('d:3:s')
+servo_7=board.get_pin('d:4:s')
+servo_8=board.get_pin('d:5:s')
+servo_9=board.get_pin('d:6:s')
+servo_10=board.get_pin('d:7:s')
 # use switch case and function taking in variables for function led write
+def servoWriteLeft(finger_left):
+        #leftfinger LED
+        if (finger_left[0] == 0):
+                servo_1.write(180)
+        else:
+                servo_1.write(0)
+        if (finger_left[1] == 0):
+                servo_2.write(180)
+        else:
+                servo_2.write(0)
+        if (finger_left[2] == 0):
+                servo_3.write(180)
+        else:
+                servo_3.write(0)
+        if (finger_left[3] == 0):
+                servo_4.write(180)
+        else:
+                servo_4.write(0)
+        if (finger_left[4] == 0):
+                servo_5.write(180)
+        else:
+                servo_5.write(0)
+        #prevents false positives
+        servo_6.write(0)
+        servo_7.write(0)
+        servo_8.write(0)
+        servo_9.write(0)
+        servo_10.write(0)
 
+def servoWriteRight(finger_right):
+        #leftfinger LED
+        if (finger_right[4] == 0):
+                servo_6.write(0)
+        else:
+                servo_6.write(180)
+        if (finger_right[3] == 0):
+                servo_7.write(0)
+        else:
+                servo_7.write(180)
+        if (finger_right[2] == 0):
+                servo_8.write(0)
+        else:
+                servo_8.write(180)
+        if (finger_right[1] == 0):
+                servo_9.write(0)
+        else:
+                servo_9.write(180)
+        if (finger_right[0] == 0):
+                servo_10.write(0)
+        else:
+                servo_10.write(180)
+        #prevents false positives
+        servo_1.write(0)
+        servo_2.write(0)
+        servo_3.write(0)
+        servo_4.write(0)
+        servo_5.write(0)
+
+def servoWritetwo(finger_right, finger_left):
+        #leftfinger servo
+        if (finger_left[0] == 0):
+                servo_1.write(0)
+        else:
+                servo_1.write(180)
+        if (finger_left[1] == 0):
+                servo_2.write(0)
+        else:
+                servo_2.write(180)
+        if (finger_left[2] == 0):
+                servo_3.write(0)
+        else:
+                servo_3.write(180)
+        if (finger_left[3] == 0):
+                servo_4.write(0)
+        else:
+                servo_4.write(180)
+        if (finger_left[4] == 0):
+                servo_5.write(0)
+        else:
+                servo_5.write(180)
+        #rightfinger servo
+        if (finger_right[4] == 0):
+                servo_6.write(0)
+        else:
+                servo_6.write(180)
+        if (finger_left[3] == 0):
+                servo_7.write(0)
+        else:
+                servo_7.write(180)
+        if (finger_left[2] == 0):
+                servo_8.write(0)
+        else:
+                servo_8.write(180)
+        if (finger_left[1] == 0):
+                servo_9.write(0)
+        else:
+                servo_9.write(180)
+        if (finger_left[0] == 0):
+                servo_10.write(0)
+        else:
+                servo_10.write(180)
+'''
 def ledWritetwo(finger_right, finger_left):
         #leftfinger LED
         led_1.write(finger_left[0])
@@ -59,11 +161,12 @@ def ledWriteLeft(finger_left):
         led_8.write(0)
         led_9.write(0)
         led_10.write(0)
+'''
 def ledOneHand(fingers, type):
         if type == "Right":
-                ledWriteRight(fingers)
+                servoWriteRight(fingers)
         else:
-                ledWriteLeft(fingers)
+                servoWriteLeft(fingers)
 
 def ledTwoHands(finger_right, finger_left):
-        ledWritetwo(finger_right, finger_left)
+        servoWritetwo(finger_right, finger_left)
